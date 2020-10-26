@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tireur de dés</string>
+    <string name="roll">Lancer</string>
+    <string name="tirar">Jeter</string>
+    <string name="otro">Autre</string>
+</resources>
