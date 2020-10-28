@@ -21,32 +21,45 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
-
+    //Image container
     lateinit var catImage: ImageView
 
-
+    //Variable that sets the toast method duration to long
     val duration = Toast.LENGTH_LONG
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Sets the layout about to use
         setContentView(R.layout.activity_main)
+
+        //This text will appear in the toast message
         val text = getString(R.string.miau)
+        //Create the toast message that will be shown in the given context
         val toast = Toast.makeText(applicationContext, text, duration)
 
+        //Initialize a Button variable
         val changeButton: Button = findViewById(R.id.change_button)
+        //Sets a listener that will press the button when we click on it
         changeButton.setOnClickListener {
-            rollDice()
+            changeCat()
+            //Shows the toast message
             toast.show()
         }
 
         catImage = findViewById(R.id.cat_image)
     }
-
-    private fun rollDice() {
-        val randomInt = Random().nextInt(6) + 1
+    //Function rand requests two int arguments and returns us another
+    fun rand(start: Int, end: Int): Int {
+        //Throws an IllegalArgumentException if the value is false.
+        require(start <= end) { "Illegal Argument"}
+        //Randomize the int value returned between the given arguments
+        return (start..end).random()
+    }
+    //Function changeCat use rand() to inicialize the drawable resources with one random picture
+    private fun changeCat() {
+        val randomInt = rand(1, 6)
         val drawableResource = when (randomInt) {
             1 -> R.drawable.gatito1
             2 -> R.drawable.gatito2
@@ -55,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             5 -> R.drawable.gatito5
             else -> R.drawable.gatito6
         }
-
+        //Set the image in its container
         catImage.setImageResource(drawableResource)
     }
 }
